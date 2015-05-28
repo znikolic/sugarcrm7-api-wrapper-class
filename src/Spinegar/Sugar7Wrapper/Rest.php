@@ -20,7 +20,12 @@ class Rest
      * Builds a new rest client.
      * @param ClientInterface $client
      */
-    public function __construct(ClientInterface $client)
+//    public function __construct(ClientInterface $client)
+//    {
+//        $this->client = $client;
+//    }
+
+    public function setClient(ClientInterface $client)
     {
         $this->client = $client;
     }
