@@ -13,7 +13,8 @@
     },
     "autoload": {
         "psr-0": {
-            "Spinegar\\Sugar7Wrapper": "src/"
+            "Spinegar\\Sugar7Wrapper": "src/",
+            "Spinegar\\Laravel": "src/"
         }
     },
     "minimum-stability": "dev"
