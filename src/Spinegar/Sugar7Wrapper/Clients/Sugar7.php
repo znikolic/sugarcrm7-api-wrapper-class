@@ -121,7 +121,7 @@ class Sugar7 implements ClientInterface
             return false;
         }
 
-        $url = rtrim($url, '/');
+        $url = rtrim($url, '/') . '/';
 
         if ($restful) {
             $url .= $this->rest_endpoint;
