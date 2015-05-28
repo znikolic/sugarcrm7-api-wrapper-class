@@ -38,20 +38,22 @@ class Sugar7 implements ClientInterface
      * The client id used for sugar when identifying this connection
      * @var string
      */
-    private $clientId = 'sugar';
+    private $client_id = 'sugar';
 
     /**
      * The client secret key for authenticating connections with sugar
      * @var string
      */
-    private $clientSecret = '';
+    private $client_secret = '';
 
     /**
      * Variable: $platform
      * Description:  A Sugar Instance.
      */
-    private $platform = 'api';
+    private $platform = 'base';
 
+
+    private $rest_endpoint = 'rest/v10/';
     /**
      * Variable: $token
      * Description:  OAuth 2.0 token
@@ -71,7 +73,7 @@ class Sugar7 implements ClientInterface
 
     public function getNewAuthToken()
     {
-        $request = $this->client->post('oauth2/token', null, array(
+        $request = $this->client->post($this->rest_endpoint . 'oauth2/token', null, array(
             'grant_type' => 'password',
             'client_id' => $this->client_id,
             'client_secret' => $this->client_secret,
