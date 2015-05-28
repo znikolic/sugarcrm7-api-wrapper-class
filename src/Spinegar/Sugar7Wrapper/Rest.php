@@ -123,6 +123,30 @@ class Rest
     }
 
     /**
+     * Sets the client id for authentication
+     * @param string $clientId
+     * @return $this
+     */
+    public function setClientId($clientId)
+    {
+        $this->client->setClientId($clientId);
+
+        return $this;
+    }
+
+    /**
+     * Sets the client secret for authentication
+     * @param string $clientSecret
+     * @return $this
+     */
+    public function setClientSecret($clientSecret)
+    {
+        $this->client->setClientSecret($clientSecret);
+
+        return $this;
+    }
+
+    /**
      * Function: getPlatform()
      * Description:  Get $platform
      * Returns:  returns value if true otherwise FALSE

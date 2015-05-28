@@ -110,12 +110,7 @@ class Sugar7 implements ClientInterface
 
     public function setClientOption($key, $value)
     {
-        if (!$key || $value)
-            return false;
-
         $this->client->setDefaultOption($key, $value);
-
-        return true;
     }
 
     public function setUrl($url)
@@ -156,12 +151,7 @@ class Sugar7 implements ClientInterface
 
     public function setPlatform($value)
     {
-        if (!$value)
-            return false;
-
         $this->platform = $value;
-
-        return true;
     }
 
     public function getPlatform()
@@ -171,18 +161,14 @@ class Sugar7 implements ClientInterface
 
     public function setToken($value)
     {
-        if (!$value)
-            return false;
-
         $this->token = $value;
-
-        return true;
     }
 
     public function get($endpoint, $parameters = array())
     {
-        if (!self::check())
+        if (!self::check()) {
             self::connect();
+        }
 
         $request = $this->client->get($endpoint);
 
