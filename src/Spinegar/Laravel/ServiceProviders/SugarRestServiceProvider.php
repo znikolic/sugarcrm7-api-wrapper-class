@@ -8,8 +8,17 @@
 
 namespace Spinegar\Laravel\ServiceProviders;
 
+use Illuminate\Support\ServiceProvider;
 
-class SugarRestServiceProvider {
+class SugarRestServiceProvider extends ServiceProvider {
+
+    /**
+     * Indicates if loading of the provider is deferred.
+     *
+     * @var bool
+     */
+    protected $defer = true;
+
     /**
      * Register the service provider.
      *
