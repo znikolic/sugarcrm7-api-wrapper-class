@@ -50,7 +50,7 @@ class Sugar7 implements ClientInterface
      * Variable: $platform
      * Description:  A Sugar Instance.
      */
-    private $platform = 'base';
+    private $platform = 'mobile';
 
 
     private $rest_endpoint = 'rest/v10/';
@@ -73,7 +73,7 @@ class Sugar7 implements ClientInterface
 
     public function getNewAuthToken()
     {
-        $request = $this->client->post($this->rest_endpoint . 'oauth2/token', null, array(
+        $request = $this->client->post($this->url . 'oauth2/token', null, array(
             'grant_type' => 'password',
             'client_id' => $this->client_id,
             'client_secret' => $this->client_secret,
@@ -115,10 +115,16 @@ class Sugar7 implements ClientInterface
         $this->client->setDefaultOption($key, $value);
     }
 
-    public function setUrl($url)
+    public function setUrl($url, $restful = true)
     {
         if (!$url) {
             return false;
+        }
+
+        $url = rtrim($url, '/');
+
+        if ($restful) {
+            $url .= $this->rest_endpoint;
         }
 
         $this->url = $url;
@@ -134,31 +140,43 @@ class Sugar7 implements ClientInterface
     public function setUsername($value)
     {
         $this->username = $value;
+
+        return $this;
     }
 
     public function setPassword($value)
     {
         $this->password = $value;
+
+        return $this;
     }
 
     public function setClientId($value)
     {
-        $this->clientId = $value;
+        $this->client_id = $value;
+
+        return $this;
     }
 
     public function setClientSecret($value)
     {
-        $this->clientSecret = $value;
+        $this->client_secret = $value;
+
+        return $this;
     }
 
     public function setPlatform($value)
     {
         $this->platform = $value;
+
+        return $this;
     }
 
     public function getPlatform()
     {
         return $this->platform;
+
+        return $this;
     }
 
     public function setToken($value)

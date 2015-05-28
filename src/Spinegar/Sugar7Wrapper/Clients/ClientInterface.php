@@ -47,9 +47,10 @@ interface ClientInterface {
     /**
      * Sets the base URL of client requests.
      * @param string $url
+     * @param boolean $restful if the request should use the api's rest endpoint.
      * @return bool
      */
-    public function setUrl($url);
+    public function setUrl($url, $restful = true);
 
 
     /**

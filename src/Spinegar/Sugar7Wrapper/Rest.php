@@ -71,9 +71,9 @@ class Rest
      * Description:  Set $url
      * Returns:  returns $this
      */
-    public function setUrl($value)
+    public function setUrl($value, $restul = true)
     {
-        $this->client->setUrl($value);
+        $this->client->setUrl($value, $restful);
 
         return $this;
     }

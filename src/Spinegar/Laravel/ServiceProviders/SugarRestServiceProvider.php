@@ -17,7 +17,7 @@ class SugarRestServiceProvider extends ServiceProvider {
      *
      * @var bool
      */
-    protected $defer = true;
+    protected $defer = false;
 
     /**
      * Register the service provider.
@@ -26,7 +26,7 @@ class SugarRestServiceProvider extends ServiceProvider {
      */
     public function register()
     {
-        $this->app->bind('sugar', 'Spinegar\Sugar7Wrapper\Rest');
+        $this->app->bind('sugar', '\Spinegar\Sugar7Wrapper\Rest');
     }
 
 }
