@@ -1,6 +1,6 @@
 {
-    "name": "spinegar/sugar7wrapper",
-    "description": "SugarCRM 7 REST API Wrapper",
+    "name": "asafreedman/sugarwrapper",
+    "description": "SugarCRM REST API Wrapper",
     "authors": [
         {
             "name": "Sean Pinegar",
