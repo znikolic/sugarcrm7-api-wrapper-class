@@ -28,6 +28,8 @@ class Rest
     public function setClient(ClientInterface $client)
     {
         $this->client = $client;
+
+        return $this;
     }
 
     /**
@@ -71,7 +73,7 @@ class Rest
      * Description:  Set $url
      * Returns:  returns $this
      */
-    public function setUrl($value, $restul = true)
+    public function setUrl($value, $restful = true)
     {
         $this->client->setUrl($value, $restful);
 
