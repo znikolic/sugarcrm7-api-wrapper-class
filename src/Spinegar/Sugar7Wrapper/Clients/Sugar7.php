@@ -190,7 +190,7 @@ class Sugar7 implements ClientInterface
             self::connect();
         }
 
-        $request = $this->client->get($endpoint);
+        $request = $this->client->get($this->url . $endpoint);
 
         $query = $request->getQuery();
 

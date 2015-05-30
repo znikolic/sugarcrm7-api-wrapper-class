@@ -207,12 +207,12 @@ class Rest
 
         $endpoint = $module;
 
-        $request = $this->client->get($endpoint, $parameters);
+        $response = $this->client->get($endpoint, $parameters);
 
-        if (!$request)
+        if (!$response)
             return false;
 
-        return $request;
+        return $response;
     }
 
     /**
