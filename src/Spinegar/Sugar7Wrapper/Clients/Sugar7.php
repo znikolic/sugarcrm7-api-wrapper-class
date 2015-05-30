@@ -249,7 +249,7 @@ class Sugar7 implements ClientInterface
         if (!self::check())
             self::connect();
 
-        $request = $this->client->post($endpoint, null, json_encode($parameters));
+        $request = $this->client->post($this->url . $endpoint, null, json_encode($parameters));
         $response = $request->send()->json();
 
         if (!$response)
@@ -277,7 +277,7 @@ class Sugar7 implements ClientInterface
         if (!self::check())
             self::connect();
 
-        $request = $this->client->delete($endpoint);
+        $request = $this->client->delete($this->url . $endpoint, null, json_encode($parameters));
         $response = $request->send()->json();
 
 
