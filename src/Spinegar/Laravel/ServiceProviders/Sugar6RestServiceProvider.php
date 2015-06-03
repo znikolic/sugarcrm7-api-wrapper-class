@@ -10,7 +10,7 @@ namespace Spinegar\Laravel\ServiceProviders;
 
 use Illuminate\Support\ServiceProvider;
 
-class SugarRestServiceProvider extends ServiceProvider {
+class Sugar6RestServiceProvider extends ServiceProvider {
 
     /**
      * Indicates if loading of the provider is deferred.
@@ -26,7 +26,7 @@ class SugarRestServiceProvider extends ServiceProvider {
      */
     public function register()
     {
-        $this->app->bind('sugar', '\Spinegar\Sugar7Wrapper\Rest');
+        $this->app->bind('sugar6', '\Spinegar\Sugar7Wrapper\Rest');
     }
 
 }

@@ -12,5 +12,5 @@ use Illuminate\Support\Facades\Facade;
 
 
 class SugarRestFacade extends Facade {
-    protected static function getFacadeAccessor() { return 'sugar'; }
+    protected static function getFacadeAccessor() { return 'sugar7'; }
 }
