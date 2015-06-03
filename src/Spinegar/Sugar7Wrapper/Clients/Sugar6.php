@@ -151,6 +151,11 @@ class Sugar6 implements ClientInterface
         $this->token = $value;
     }
 
+    public function getToken()
+    {
+        return $this->token;
+    }
+
     public function get($endpoint, $parameters = array())
     {
         if (!self::check()) {
