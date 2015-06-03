@@ -63,12 +63,15 @@ class Sugar6 implements ClientInterface
             "input_type" => 'JSON',
             "response_type" => 'JSON',
             "rest_data" => json_encode([
-                'user_name' => $this->username,
-                'password' => $this->password
+                'user_auth' => [
+                    'user_name' => $this->username,
+                    'password' => md5($this->password)
+                ]
             ])
         );
 
-        $result = $this->client->post($this->url, $parameters)->send()->json();
+        $request = $this->client->post($this->url, null, $parameters);
+        $result = $request->send()->json();
 
         if (isset($result['id'])) {
             $this->setToken($result['id']);
