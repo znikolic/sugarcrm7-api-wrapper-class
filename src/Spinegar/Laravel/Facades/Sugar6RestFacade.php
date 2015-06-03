@@ -11,6 +11,6 @@ namespace Spinegar\Laravel\Facades;
 use Illuminate\Support\Facades\Facade;
 
 
-class SugarRestFacade extends Facade {
+class Sugar6RestFacade extends Facade {
     protected static function getFacadeAccessor() { return 'sugar6'; }
 }
