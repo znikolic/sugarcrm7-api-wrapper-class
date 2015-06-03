@@ -178,12 +178,16 @@ class Sugar6 implements ClientInterface
         return $response;
     }
 
-    public function post($endpoint, $parameters = array())
+    public function post($endpoint, $parameters = array(), $encode = true)
     {
         if (!self::check())
             self::connect();
 
-        $request = $this->client->post($this->url . $endpoint, null, json_encode($parameters));
+        if ($encode) {
+            $parameters = json_encode($parameters);
+        }
+
+        $request = $this->client->post($this->url . $endpoint, null, $parameters);
         $response = $request->send()->json();
 
         if (!$response)

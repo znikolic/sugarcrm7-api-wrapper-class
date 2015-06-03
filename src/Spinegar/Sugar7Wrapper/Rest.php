@@ -584,18 +584,20 @@ class Rest
     }
 
     /**
-     * Function: postEndpoint()
-     * Parameters: $endpoint = API Endpoint
-     * Parameters: $parameters = parameters to pass to the endpoint
-     * Description:  Call a post endpoint
-     * Returns:  Returns ARRAY if successful, otherwise FALSE
+     * Makes a POST request to a given endpoint.
+     *
+     * @param string $endpoint
+     * @param array $parameters
+     * @param bool $encode If the parameters passed should be JSON encoded prior to transport.
+     *
+     * @return bool
      */
-    public function postEndpoint($endpoint, $parameters = array())
+    public function postEndpoint($endpoint, $parameters = array(), $encode = true)
     {
         if (!$this->client->check())
             $this->client->connect();
 
-        $request = $this->client->post($endpoint, $parameters);
+        $request = $this->client->post($endpoint, $parameters, $encode);
 
         if (!$request)
             return false;
