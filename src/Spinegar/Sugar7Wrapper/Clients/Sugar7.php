@@ -2,7 +2,6 @@
 
 use Guzzle\Common\Event;
 use Guzzle\Http\Client;
-use Guzzle\Http\Query;
 
 /**
  * SugarCRM 7 Rest Client
@@ -61,10 +60,28 @@ class Sugar7 implements ClientInterface
     protected $token;
 
     /**
+     * When the access token expires
+     * @var integer
+     */
+    private $expiresIn;
+
+    /**
      * Variable: $client
      * Description:  Guzzle Client
      */
     protected $client;
+
+    /**
+     * The refresh token
+     * @var string
+     */
+    private $refreshToken;
+
+    /**
+     * When the refresh token expires in seconds
+     * @var
+     */
+    private $refreshExpiresIn;
 
     function __construct()
     {
@@ -83,6 +100,10 @@ class Sugar7 implements ClientInterface
         ));
 
         $result = $request->send()->json();
+        $this->token = $result['access_token'];
+        $this->expiresIn = $result['expires_in'];
+        $this->refreshToken = $result['refresh_token'];
+        $this->refreshExpiresIn = $result['refresh_expires_in'];
         return $result['access_token'];
     }
 
@@ -175,13 +196,31 @@ class Sugar7 implements ClientInterface
     public function getPlatform()
     {
         return $this->platform;
-
-        return $this;
     }
 
     public function setToken($value)
     {
         $this->token = $value;
+    }
+
+    public function getTokenExpiresIn()
+    {
+        return $this->expiresIn;
+    }
+
+    public function getToken()
+    {
+        return $this->token;
+    }
+
+    public function getRefreshToken()
+    {
+        return $this->refreshToken;
+    }
+
+    public function getRefreshExpiresIn()
+    {
+        return $this->refreshExpiresIn;
     }
 
     public function get($endpoint, $parameters = array())
