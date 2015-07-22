@@ -86,6 +86,10 @@ class Sugar7 implements ClientInterface
     function __construct()
     {
         $this->client = new Client();
+
+        $eventDispatcher = $this->client->getEventDispatcher();
+        $eventDispatcher->addListener('request.before_send', array($this, 'beforeSendRequest'));
+        $eventDispatcher->addListener('request.error', array($this, 'refreshToken'));
     }
 
     public function getNewAuthToken()
@@ -104,21 +108,17 @@ class Sugar7 implements ClientInterface
         $this->expiresIn = $result['expires_in'];
         $this->refreshToken = $result['refresh_token'];
         $this->refreshExpiresIn = $result['refresh_expires_in'];
+
         return $result['access_token'];
     }
 
     public function connect()
     {
-        $token = $this->getNewAuthToken();
-
-        if (!$token) {
-            return false;
+        if ($this->token) {
+            return true;
         }
 
-        self::setToken($token);
-        $eventDispatcher = $this->client->getEventDispatcher();
-        $eventDispatcher->addListener('request.before_send', array($this, 'beforeSendRequest'));
-        $eventDispatcher->addListener('request.error', array($this, 'refreshToken'));
+        $this->token = $this->getNewAuthToken();
 
         return true;
     }
