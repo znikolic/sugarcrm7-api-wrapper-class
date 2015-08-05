@@ -476,14 +476,37 @@ class Rest
      * Description:  This method retrieves a list of records from the specified link
      * Returns:  Returns an Array if successful, otherwise FALSE
      */
-    public function related($module, $record, $link)
+    public function related($module, $record, $link, $offset=0)
     {
+        if (!$this->client->check())
+            $this->client->connect();
+
+        $endpoint = $module . '/' . $record . '/link/' . $link . "?offset=".$offset;
+
+        $request = $this->client->get($endpoint);
+
+        if (!$request)
+            return false;
+
+        return $request;
+    }
+
+    /**
+     * Creates single related record
+     *
+     * @param $module - primary module we are working with
+     * @param $record - primary record we are working with
+     * @param $link - link name
+     * @param array $fields - key => value data for new related record
+     * @return bool
+     */
+    public function relateToNewRecord($module, $record, $link, $fields = array()){
         if (!$this->client->check())
             $this->client->connect();
 
         $endpoint = $module . '/' . $record . '/link/' . $link;
 
-        $request = $this->client->get($endpoint);
+        $request = $this->client->post($endpoint, $fields);
 
         if (!$request)
             return false;
